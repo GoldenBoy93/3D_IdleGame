@@ -22,14 +22,14 @@ public class Player : MonoBehaviour
         Input = GetComponent<PlayerController>();   
         Controller = GetComponent<CharacterController>();
 
-        stateMachine = new PlayerStateMachine(this);
-        stateMachine.ChangeState(stateMachine.IdleState);
+        stateMachine = new PlayerStateMachine(this);        
     }
 
     void Start()
     {
         // 커서 잠금
         Cursor.lockState = CursorLockMode.Locked;
+        stateMachine.ChangeState(stateMachine.IdleState);
     }
 
     private void Update()
