@@ -13,17 +13,33 @@ public class Player : MonoBehaviour
     public PlayerController Input {  get; private set; }
     public CharacterController Controller { get; private set; }
 
+    private PlayerStateMachine stateMachine;
+
     void Awake()
     {
         AnimationData.Initialize(); // Hash값 생성
-        Animator = GetComponent<Animator>();
+        Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerController>();   
         Controller = GetComponent<CharacterController>();
+
+        stateMachine = new PlayerStateMachine(this);
+        stateMachine.ChangeState(stateMachine.IdleState);
     }
 
     void Start()
     {
         // 커서 잠금
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        stateMachine.HandleInput();
+        stateMachine.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        stateMachine.PhysicsUpdate();
     }
 }
