@@ -318,6 +318,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4bed0423d70d44c873e220ea372ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: 3c93e8712ed8c624086d8d1427b366c6,
+    type: 2}
+  <AnimationData>k__BackingField:
+    groundParameterName: '@Ground'
+    idleParameterName: Idle
+    walkParameterName: Walk
+    runParameterName: Run
+    airParameterName: '@Air'
+    jumpParameterName: Jump
+    fallParameterName: Fall
+    attackParameterName: '@Attack'
+    combatAttackParameterName: CombatAttack
 --- !u!114 &256690055
 MonoBehaviour:
   m_ObjectHideFlags: 0

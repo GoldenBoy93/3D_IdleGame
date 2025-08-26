@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
 
+// 이걸 붙이면 직렬화 되어 'Player' 스크립트처럼 [field : SerializeField]를 붙여서
+// 유니티에서 내부적으로 'Player' 인스펙터창에 갖다 쓸 수 있음.
 [Serializable]
-public class PlayerAnimationData // Data만 사용할거라 Mono~ 제거하고 'new'로 인스턴스하여 사용
+public class PlayerAnimationData
 {
     // AnimationController의 Parameter 이름들을 그대로 가져옴
     [SerializeField] private string groundParameterName = "@Ground";
