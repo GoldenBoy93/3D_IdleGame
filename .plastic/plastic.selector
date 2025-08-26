@@ -1,0 +1,4 @@
+repository "3D_IdleGame/3D_IdleGame@14568805666348@cloud"
+  path "/"
+    br "/main"
+    co "/main"
