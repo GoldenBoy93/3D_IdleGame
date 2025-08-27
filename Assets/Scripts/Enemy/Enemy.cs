@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     public Health Health { get; private set; }
 
+    EnemyManager enemyManager;
+
     private void Awake()
     {
         AnimationData.Initialize();
@@ -30,6 +32,8 @@ public class Enemy : MonoBehaviour
         Health = GetComponent<Health>();
 
         stateMachine = new EnemyStateMachine(this);
+
+        enemyManager = EnemyManager.Instance;
     }
 
     private void Start()
@@ -54,5 +58,6 @@ public class Enemy : MonoBehaviour
     {
         Animator.SetTrigger("Die");
         enabled = false;
+        enemyManager.RemoveEnemyOnDeath(this); // 살아있는 적 List에서 사망한 객체 본인을 제거 해주는 함수 호출
     }
 }

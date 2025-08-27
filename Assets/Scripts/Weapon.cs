@@ -17,7 +17,6 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("´êÀ½");
         if (other == myCollider)
         {
             Debug.Log("myCollider => return");
