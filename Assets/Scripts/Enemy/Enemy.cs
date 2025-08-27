@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IPoolable
@@ -59,10 +60,24 @@ public class Enemy : MonoBehaviour, IPoolable
     void OnDie()
     {
         Animator.SetTrigger("Die");
+
+        // 스크립트 비활성화
         enabled = false;
+
+        // 캐릭터 컨트롤러 비활성화
+        Controller.enabled = false;
+
+        StartCoroutine(DelayDie());
+    }
+
+    // 적 사망 애니메이션을 전부 보여주기 위한 시간벌기
+    private IEnumerator DelayDie()
+    {
+        yield return new WaitForSeconds(5f);
+                
         enemyManager.RemoveEnemyOnDeath(this); // 살아있는 적 List에서 사망한 객체 본인을 제거 해주는 함수 호출
 
-        OnDespawn();
+        OnDespawn(); // 오브젝트풀 돌려보기 위한 함수 호출
     }
 
     public void Initialize(Action<GameObject> returnAction)
@@ -97,8 +112,6 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         // Health 이벤트 구독 해제
         Health.OnDie -= OnDie;
-        // 캐릭터 컨트롤러 비활성화
-        Controller.enabled = false;
 
         returnToPool?.Invoke(gameObject); // 풀로 반환
     }
