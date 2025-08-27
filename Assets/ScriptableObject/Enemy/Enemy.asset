@@ -16,7 +16,7 @@ MonoBehaviour:
   <AttackRange>k__BackingField: 2
   <ForceTransitionTime>k__BackingField: 0.1
   <Force>k__BackingField: 1
-  Damage: 20
+  Damage: 1
   <GroundData>k__BackingField:
     <BaseSpeed>k__BackingField: 5
     <BaseRotationDamping>k__BackingField: 1
@@ -24,4 +24,4 @@ MonoBehaviour:
     <RunSpeedModifier>k__BackingField: 1
   <Dealing_Start_TransitionTime>k__BackingField: 0.25
   <Dealing_End_TransitionTime>k__BackingField: 0.5
-  aggressive: 0
+  aggressive: 1

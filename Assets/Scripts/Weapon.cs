@@ -19,7 +19,6 @@ public class Weapon : MonoBehaviour
     {
         if (other == myCollider)
         {
-            Debug.Log("myCollider => return");
             return;
         }
         if (alreadyColliderWith.Contains(other)) return;

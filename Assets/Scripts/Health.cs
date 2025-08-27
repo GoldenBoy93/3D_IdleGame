@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -11,7 +11,16 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        // 플레이어처럼 오브젝트 풀링을 사용하지 않는 경우를 위해 체력 초기화
+        health = maxHealth;
+        IsDie = false;
+    }
+
+    // 에너미는 Start() 대신 InitHealth()를 OnSpawn()에서 호출
+    public void InitHealth()
+    {
         health = maxHealth;
+        IsDie = false; // 사망 상태 초기화
     }
 
     public void TakeDamage(int damage)
@@ -25,7 +34,6 @@ public class Health : MonoBehaviour
             IsDie = true;
             OnDie?.Invoke();
         }
-
         Debug.Log($"{this.gameObject} : {health}");
     }
 }

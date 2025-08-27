@@ -50,13 +50,14 @@ public class GameManager : MonoBehaviour
     void StartNextWave()
     {
         currentWaveIndex += 1;
-        int enemyCount = 1 + currentWaveIndex / 5;
+        int enemyCount = 1 + currentWaveIndex / 2;
 
         // 이벤트를 호출하여 다음 웨이브 시작을 알림
         // EnemyManager는 이 이벤트를 구독하여 웨이브를 시작하게 됨
         if (OnStartWave != null)
         {
             OnStartWave(enemyCount);
+            Debug.Log($"Next : {enemyCount}");
         }
     }
 

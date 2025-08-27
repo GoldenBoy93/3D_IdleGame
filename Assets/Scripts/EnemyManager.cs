@@ -28,6 +28,9 @@ public class EnemyManager : MonoBehaviour
 
     GameManager gameManager; // 게임매니저를 지칭 할 변수
 
+    ObjectPoolManager objectPoolManager;  // 오브젝트풀매니저를 지칭 할 변수
+
+
     // EnemyManager 싱글톤
     public static EnemyManager Instance
     {
@@ -43,6 +46,9 @@ public class EnemyManager : MonoBehaviour
 
         // 게임매니저를 변수에 저장
         gameManager = GameManager.Instance;
+
+        // ObjectPoolManager 싱글톤 인스턴스를 가져옴
+        objectPoolManager = ObjectPoolManager.Instance;
     }
 
     private void OnEnable()
@@ -110,18 +116,29 @@ public class EnemyManager : MonoBehaviour
         // 랜덤한 적 프리팹 선택
         GameObject randomPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
 
+        // 선택된 프리팹의 인덱스를 가져옴
+        int prefabIndex = enemyPrefabs.IndexOf(randomPrefab);
+
         // 랜덤한 영역 선택
         Rect randomArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
 
         // Rect 영역 내부의 랜덤한 3D 위치 계산
-        // y축은 지면의 높이 (예: 0)로 고정
         Vector3 randomPosition = new Vector3(Random.Range(randomArea.xMin, randomArea.xMax), 0f, Random.Range(randomArea.yMin, randomArea.yMax));
 
-        // 적 생성 및 리스트에 추가
-        GameObject spawnedEnemy = Instantiate(randomPrefab, randomPosition, Quaternion.identity);
+        // 오브젝트 풀에서 인덱스를 사용하여 오브젝트를 가져옴
+        GameObject spawnedEnemy = objectPoolManager.GetObject(prefabIndex, randomPosition, Quaternion.identity);
+
         Enemy enemy = spawnedEnemy.GetComponent<Enemy>();
 
-        activeEnemies.Add(enemy);
+        // 오브젝트가 올바르게 생성되었을 경우에만 리스트에 추가
+        if (enemy != null)
+        {
+            activeEnemies.Add(enemy);
+        }
+        else
+        {
+            Debug.LogError("오브젝트 풀에서 가져온 오브젝트에 Enemy 컴포넌트가 없습니다!");
+        }
 
         Debug.Log($"activeEnemies List : {activeEnemies.Count}");
     }
