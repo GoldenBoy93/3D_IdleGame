@@ -29,6 +29,7 @@ public class PlayerBaseState : IState
         PlayerController input = stateMachine.Player.Input;
         input.playerActions.Movement.canceled += OnMovementCanceled;
         input.playerActions.Run.started += OnRunStarted;
+        input.playerActions.Jump.started += OnJumpStarted;
     }
 
     // 각 Action(Movement, Run)의 이벤트에 구독 해제할 함수 모음
@@ -37,7 +38,7 @@ public class PlayerBaseState : IState
         PlayerController input = stateMachine.Player.Input;
         input.playerActions.Movement.canceled -= OnMovementCanceled;
         input.playerActions.Run.started -= OnRunStarted;
-
+        input.playerActions.Jump.started -= OnJumpStarted;
     }
 
     // Player의 Update에서 계속 호출
@@ -64,6 +65,11 @@ public class PlayerBaseState : IState
     }
 
     protected virtual void OnRunStarted(InputAction.CallbackContext context)
+    {
+
+    }
+
+    protected virtual void OnJumpStarted(InputAction.CallbackContext context)
     {
 
     }
@@ -116,7 +122,7 @@ public class PlayerBaseState : IState
     {
         float movementSpeed = GetMovementSpeed();
 
-        stateMachine.Player.Controller.Move((direction * movementSpeed) * Time.deltaTime);
+        stateMachine.Player.Controller.Move(((direction * movementSpeed) + stateMachine.Player.ForceReceiver.Movement) * Time.deltaTime);
     }
 
     private float GetMovementSpeed()

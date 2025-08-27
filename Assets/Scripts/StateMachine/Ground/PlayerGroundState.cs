@@ -46,4 +46,14 @@ public class PlayerGroundState : PlayerBaseState
 
         base.OnMovementCanceled(context);
     }
+
+    // Jump는 땅에 붙어있을 때 (Idle, Walk, Run) 가능하므로 GroundState에서 구현
+    // BaseState에서 등록해 놓은 함수 override해서 구현
+    // 이벤트 호출 될 때 발생 할 로직
+    protected override void OnJumpStarted(InputAction.CallbackContext context)
+    {
+        base.OnJumpStarted(context);
+        // Jump 상태로 전환
+        stateMachine.ChangeState(stateMachine.JumpState);
+    }
 }
