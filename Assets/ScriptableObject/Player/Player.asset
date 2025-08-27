@@ -25,23 +25,23 @@ MonoBehaviour:
       <ComboStateIndex>k__BackingField: 1
       <ComboTransitionTime>k__BackingField: 0.8
       <ForceTransitionTime>k__BackingField: 0.1
-      <Force>k__BackingField: 1
+      <Force>k__BackingField: 0.5
       Damage: 5
-      <Dealing_Start_TransitionTime>k__BackingField: 0
-      <Dealing_End_TransitionTime>k__BackingField: 0
+      <Dealing_Start_TransitionTime>k__BackingField: 0.25
+      <Dealing_End_TransitionTime>k__BackingField: 0.5
     - <AttackName>k__BackingField: DoubleAttack
       <ComboStateIndex>k__BackingField: 2
       <ComboTransitionTime>k__BackingField: 0.8
       <ForceTransitionTime>k__BackingField: 0.1
-      <Force>k__BackingField: 2
+      <Force>k__BackingField: 0.5
       Damage: 7
-      <Dealing_Start_TransitionTime>k__BackingField: 0
-      <Dealing_End_TransitionTime>k__BackingField: 0
+      <Dealing_Start_TransitionTime>k__BackingField: 0.25
+      <Dealing_End_TransitionTime>k__BackingField: 0.5
     - <AttackName>k__BackingField: TripleAttack
       <ComboStateIndex>k__BackingField: -1
       <ComboTransitionTime>k__BackingField: 0.8
       <ForceTransitionTime>k__BackingField: 0.1
-      <Force>k__BackingField: 3
+      <Force>k__BackingField: 0.5
       Damage: 10
-      <Dealing_Start_TransitionTime>k__BackingField: 0
-      <Dealing_End_TransitionTime>k__BackingField: 0
+      <Dealing_Start_TransitionTime>k__BackingField: 0.25
+      <Dealing_End_TransitionTime>k__BackingField: 0.5

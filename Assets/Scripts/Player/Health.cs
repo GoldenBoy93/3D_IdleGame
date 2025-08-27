@@ -26,6 +26,6 @@ public class Health : MonoBehaviour
             OnDie?.Invoke();
         }
 
-        Debug.Log(health);
+        Debug.Log($"{this.gameObject} : {health}");
     }
 }

@@ -24,3 +24,4 @@ MonoBehaviour:
     <RunSpeedModifier>k__BackingField: 1
   <Dealing_Start_TransitionTime>k__BackingField: 0.25
   <Dealing_End_TransitionTime>k__BackingField: 0.5
+  aggressive: 0
