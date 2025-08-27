@@ -20,11 +20,15 @@ public class PlayerStateMachine : StateMachine
     public PlayerRunState RunState { get; private set; }
 
     public PlayerJumpState JumpState { get; private set; }
+    public PlayerFallState FallState { get; private set; }
+
 
     public PlayerStateMachine(Player player)
     {
         this.Player = player;
 
+        MainCameraTransform = Camera.main.transform;
+        
         // 미리 로직이 담긴 Class 를 인스턴스화 시킨 다음
         // currentState 변수에 할당 & 해제를 반복해서 사용한다
         // 예) stateMachine.ChangeState(IdleState) 
@@ -34,8 +38,7 @@ public class PlayerStateMachine : StateMachine
         RunState = new PlayerRunState(this);
 
         JumpState = new PlayerJumpState(this);
-
-        MainCameraTransform = Camera.main.transform;
+        FallState = new PlayerFallState(this);
 
         MovementSpeed = player.Data.GroundData.BaseSpeed;
         RotationDamping = player.Data.GroundData.BaseRotationDamping;

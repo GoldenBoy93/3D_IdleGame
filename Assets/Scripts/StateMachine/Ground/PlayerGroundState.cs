@@ -30,6 +30,18 @@ public class PlayerGroundState : PlayerBaseState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        // 조건 1) 땅에 붙어있지 않은지 체크
+        // 조건 2) velocity.y가 gravity.y * Time.fixedDeltaTime 보다 작아지는 지 체크
+        // → 작다면 ForceReceiver에서 누적되어서 감소 중인 상태.
+        // 9강 ForceReceiver 로직 다시 확인
+        if (!stateMachine.Player.Controller.isGrounded
+            && stateMachine.Player.Controller.velocity.y < Physics.gravity.y * Time.fixedDeltaTime)
+        {
+            // Fall 상태로 전환
+            stateMachine.ChangeState(stateMachine.FallState);
+            return;
+        }
     }
 
     protected override void OnMovementCanceled(InputAction.CallbackContext context)

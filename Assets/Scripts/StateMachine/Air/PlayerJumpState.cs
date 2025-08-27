@@ -32,7 +32,7 @@ public class PlayerJumpState : PlayerAirState
         if (stateMachine.Player.Controller.velocity.y <= 0)
         {
             // Idle 상태로 전환 → 추후 Fall 상태로 전환 수정
-            stateMachine.ChangeState(stateMachine.IdleState);
+            stateMachine.ChangeState(stateMachine.FallState);
             return;
         }
     }
