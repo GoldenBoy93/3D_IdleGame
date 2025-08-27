@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
         if (OnStartWave != null)
         {
             OnStartWave(enemyCount);
-            Debug.Log($"Next : {enemyCount}");
         }
     }
 
