@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,20 +6,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int currentWaveIndex = 0;
 
-    private EnemyManager enemyManager;
-
-    public static bool isFirstLoading = true;
+    // 다음 웨이브를 시작해야 할 때 호출되는 이벤트
+    public delegate void StartWaveAction(int waveCount);
+    public static event StartWaveAction OnStartWave;
 
     public static GameManager Instance
     {
         get
         {
-            // 할당되지 않았을 때, 외부에서 GameManager.Instance 로 접근하는 경우
-            // 게임 오브젝트를 만들어주고 GameManager 스크립트를 AddComponent로 붙여준다.
             if (_instance == null)
             {
-                // 게임오브젝트가 없어도 시작시 없는걸 확인후 매니저를 게임오브젝트로 생성해줌
-                _instance = new GameObject("GameManager").AddComponent<GameManager>();
+                // 씬에 GameManager가 없으면 에러를 발생시켜 문제를 알림
+                Debug.LogError("GameManager is not found in the scene.");
             }
             return _instance;
         }
@@ -28,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Awake가 호출 될 때라면 이미 매니저 오브젝트는 생성되어 있는 것이고, '_instance'에 자신을 할당
+        // 싱글톤 패턴 초기화 (중복 로직 제거)
         if (_instance == null)
         {
             _instance = this;
@@ -36,48 +33,37 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // 이미 오브젝트가 존재하는 경우 '자신'을 파괴해서 중복방지
             if (_instance != this)
             {
                 Destroy(gameObject);
             }
         }
-
-        enemyManager = EnemyManager.Instance;
     }
 
     private void Start()
     {
-        StartGame();
-
-        //if (!isFirstLoading)
-        //{
-        //    StartGame();
-        //}
-        //else
-        //{
-        //    isFirstLoading = false;
-        //}
-    }
-
-    public void StartGame()
-    {
+        // 게임 시작 시 첫 웨이브 시작
         StartNextWave();
     }
 
+    // 다음 웨이브를 시작하는 핵심 로직
     void StartNextWave()
     {
         currentWaveIndex += 1;
-        enemyManager.StartWave(1 + currentWaveIndex / 5);
+        int enemyCount = 1 + currentWaveIndex / 5;
+
+        // 이벤트를 호출하여 다음 웨이브 시작을 알림
+        // EnemyManager는 이 이벤트를 구독하여 웨이브를 시작하게 됨
+        if (OnStartWave != null)
+        {
+            OnStartWave(enemyCount);
+        }
     }
 
+    // EnemyManager로부터 호출될 메서드
     public void EndOfWave()
     {
+        // 다음 웨이브 시작
         StartNextWave();
-    }
-
-    public void GameOver()
-    {
-        enemyManager.StopWave();
     }
 }

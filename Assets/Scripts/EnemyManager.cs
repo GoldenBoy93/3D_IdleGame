@@ -28,7 +28,7 @@ public class EnemyManager : MonoBehaviour
 
     GameManager gameManager; // 게임매니저를 지칭 할 변수
 
-    // Instance 속성에서 새로운 GameObject를 생성하는 로직 제거
+    // EnemyManager 싱글톤
     public static EnemyManager Instance
     {
         get
@@ -45,12 +45,34 @@ public class EnemyManager : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
+    private void OnEnable()
+    {
+        // GameManager의 OnStartWave 이벤트에 OnGameManagerStartWave 메서드를 등록
+        GameManager.OnStartWave += OnGameManagerStartWave;
+    }
 
+    private void OnDisable()
+    {
+        // 오브젝트가 비활성화될 때 이벤트 구독 해제
+        GameManager.OnStartWave -= OnGameManagerStartWave;
+    }
+
+    // 이벤트가 발생할 때 호출되는 메서드
+    private void OnGameManagerStartWave(int waveCount)
+    {
+        StartWave(waveCount);
+    }
+
+    // 기존 StartWave 메서드
     public void StartWave(int waveCount)
     {
         if (waveCount <= 0)
         {
-            gameManager.EndOfWave();
+            // GameManager에게 웨이브가 끝났음을 알림
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.EndOfWave();
+            }
             return;
         }
 
