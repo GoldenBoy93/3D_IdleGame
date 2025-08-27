@@ -28,37 +28,18 @@ public class EnemyManager : MonoBehaviour
 
     GameManager gameManager; // 게임매니저를 지칭 할 변수
 
+    // Instance 속성에서 새로운 GameObject를 생성하는 로직 제거
     public static EnemyManager Instance
     {
         get
         {
-            // 할당되지 않았을 때, 외부에서 Manager.Instance 로 접근하는 경우
-            // 게임 오브젝트를 만들어주고 Manager 스크립트를 AddComponent로 붙여준다.
-            if (_instance == null)
-            {
-                // 게임오브젝트가 없어도 시작시 없는걸 확인후 매니저를 게임오브젝트로 생성해줌
-                _instance = new GameObject("EnemyManager").AddComponent<EnemyManager>();
-            }
             return _instance;
         }
     }
 
     private void Awake()
     {
-        // Awake가 호출 될 때라면 이미 매니저 오브젝트는 생성되어 있는 것이고, '_instance'에 자신을 할당
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            // 이미 오브젝트가 존재하는 경우 '자신'을 파괴해서 중복방지
-            if (_instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
+        _instance = this;
 
         // 게임매니저를 변수에 저장
         gameManager = GameManager.Instance;

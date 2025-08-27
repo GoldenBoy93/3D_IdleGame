@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     public static bool isFirstLoading = true;
 
-
     public static GameManager Instance
     {
         get
