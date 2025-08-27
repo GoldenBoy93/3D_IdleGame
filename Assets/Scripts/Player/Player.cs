@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private PlayerStateMachine stateMachine;
 
+    public Health Health { get; private set; }
+
     void Awake()
     {
         AnimationData.Initialize(); // Hash값 생성
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
         Input = GetComponent<PlayerController>();   
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
+        Health = GetComponent<Health>();
 
         stateMachine = new PlayerStateMachine(this);        
     }
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
         // 커서 잠금
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
+        Health.OnDie += OnDie;
     }
 
     private void Update()
@@ -43,5 +47,11 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.PhysicsUpdate();
+    }
+
+    void OnDie()
+    {
+        Animator.SetTrigger("Die");
+        enabled = false;
     }
 }

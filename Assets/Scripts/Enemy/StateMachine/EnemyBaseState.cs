@@ -102,10 +102,11 @@ public class EnemyBaseState : IState
         }
     }
 
-    protected bool IsInChaseRange()
+    protected bool IsInChasingRange()
     {
-        float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Enemy.transform.position).sqrMagnitude;
+        if (stateMachine.Target.IsDie) return false;
 
+        float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Enemy.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.Enemy.Data.PlayerChasingRange * stateMachine.Enemy.Data.PlayerChasingRange;
     }
 }
