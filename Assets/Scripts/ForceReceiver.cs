@@ -6,6 +6,8 @@ public class ForceReceiver : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
 
+    [SerializeField] private float drag = 0.3f; // 공격시 약간 이동할 수 있도록 
+
     // 수직이동 변화량
     private float verticalVelocity;
 
@@ -13,7 +15,10 @@ public class ForceReceiver : MonoBehaviour
     // 현재는 수직 이동만 구현 (람다 식)
     // 아래 Update문에서 땅에 붙어 있을 때와 그렇지 않을 때 verticalVelocity 변화됨
     // 외부에서 Movement 접근할 때 Update에 따라 verticalVelocity는 유동적.
-    public Vector3 Movement => Vector3.up * verticalVelocity;
+    public Vector3 Movement => impact + Vector3.up * verticalVelocity;
+
+    private Vector3 dampingVelocity;
+    private Vector3 impact;
 
     private void Start()
     {
@@ -32,6 +37,19 @@ public class ForceReceiver : MonoBehaviour
             // 땅에서 떨어졌을 때는 gravity.y (-9.8)을 누적시켜서 y 포지션을 감소
             verticalVelocity += Physics.gravity.y * Time.deltaTime;
         }
+
+        impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, drag);
+    }
+
+    public void Reset()
+    {
+        verticalVelocity = 0;
+        impact = Vector3.zero;
+    }
+
+    public void AddForce(Vector3 force)
+    {
+        impact += force;
     }
 
     public void Jump(float jumpForce)

@@ -17,7 +17,7 @@ public class PlayerAnimationData
     [SerializeField] private string fallParameterName = "Fall";
 
     [SerializeField] private string attackParameterName = "@Attack";
-    [SerializeField] private string combatAttackParameterName = "CombatAttack";
+    [SerializeField] private string comboAttackParameterName = "ComboAttack";
 
     // Hash 값으로 비교하기 위해 변환한 값을 저장할 변수들
     public int GroundParameterHash { get; private set; }
@@ -30,7 +30,7 @@ public class PlayerAnimationData
     public int FallParameterHash { get; private set; }
 
     public int AttackParameterHash { get; private set; }
-    public int CombatAttackParameterHash { get; private set; }
+    public int ComboAttackParameterHash { get; private set; }
 
     // Player의 Awake에서 호출 예정
     public void Initialize()
@@ -46,6 +46,6 @@ public class PlayerAnimationData
         FallParameterHash = Animator.StringToHash(fallParameterName);
 
         AttackParameterHash = Animator.StringToHash(attackParameterName);
-        CombatAttackParameterHash = Animator.StringToHash(combatAttackParameterName);
+        ComboAttackParameterHash = Animator.StringToHash(comboAttackParameterName);
     }
 }

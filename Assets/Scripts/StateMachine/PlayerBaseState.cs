@@ -30,6 +30,8 @@ public class PlayerBaseState : IState
         input.playerActions.Movement.canceled += OnMovementCanceled;
         input.playerActions.Run.started += OnRunStarted;
         input.playerActions.Jump.started += OnJumpStarted;
+        input.playerActions.Attack.performed += OnAttackPerformed;
+        input.playerActions.Attack.canceled += OnAttackCanceled;
     }
 
     // 각 Action(Movement, Run)의 이벤트에 구독 해제할 함수 모음
@@ -39,6 +41,8 @@ public class PlayerBaseState : IState
         input.playerActions.Movement.canceled -= OnMovementCanceled;
         input.playerActions.Run.started -= OnRunStarted;
         input.playerActions.Jump.started -= OnJumpStarted;
+        input.playerActions.Attack.performed -= OnAttackPerformed;
+        input.playerActions.Attack.canceled -= OnAttackCanceled;
     }
 
     // Player의 Update에서 계속 호출
@@ -72,6 +76,16 @@ public class PlayerBaseState : IState
     protected virtual void OnJumpStarted(InputAction.CallbackContext context)
     {
 
+    }
+
+    protected virtual void OnAttackPerformed(InputAction.CallbackContext obj)
+    {
+        stateMachine.IsAttacking = true;
+    }
+
+    protected virtual void OnAttackCanceled(InputAction.CallbackContext obj)
+    {
+        stateMachine.IsAttacking = false;
     }
 
     // 애니메이션 전환에 필요한 함수들
@@ -139,6 +153,34 @@ public class PlayerBaseState : IState
             Transform playerTransform = stateMachine.Player.transform;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
+        }
+    }
+
+    protected void ForceMove()
+    {
+        stateMachine.Player.Controller.Move(stateMachine.Player.ForceReceiver.Movement * Time.deltaTime);
+    }
+
+    protected float GetNormalizedTime(Animator animator, string tag)
+    {
+        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0);
+
+        // 전환되고 있을 때 && 다음 애니메이션이 tag
+        if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
+        {
+            return nextInfo.normalizedTime;
+        }
+
+        // 전환되고 있지 않을 때 %% 현재 애니메이션이 tag
+        else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
+        {
+            return currentInfo.normalizedTime;
+        }
+
+        else
+        {
+            return 0;
         }
     }
 }
