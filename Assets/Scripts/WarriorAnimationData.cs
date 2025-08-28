@@ -4,7 +4,7 @@ using UnityEngine;
 // 이걸 붙이면 직렬화 되어 'Player' 스크립트처럼 [field : SerializeField]를 붙여서
 // 유니티에서 내부적으로 'Player' 인스펙터창에 갖다 쓸 수 있음.
 [Serializable]
-public class PlayerAnimationData
+public class WarriorAnimationData
 {
     // AnimationController의 Parameter 이름들을 그대로 가져옴
     [SerializeField] private string groundParameterName = "@Ground";

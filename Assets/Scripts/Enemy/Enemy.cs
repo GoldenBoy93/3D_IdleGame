@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IPoolable
     [field: SerializeField] public EnemySO Data { get; private set; }
 
     [field: Header("Animations")]
-    [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
+    [field: SerializeField] public WarriorAnimationData AnimationData { get; private set; }
 
     public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }

@@ -19,7 +19,7 @@ public class ArcherStateMachine : StateMachine
     public ArcherStateMachine(Archer archer)
     {
         this.Archer = archer;
-        Target = GameObject.FindGameObjectWithTag("TowerDoor").GetComponent<Health>();
+        Target = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
 
         IdleState = new ArcherIdleState(this);
         ChasingState = new ArcherChasingState(this);

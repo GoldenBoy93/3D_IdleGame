@@ -17,7 +17,7 @@ public class EnemyStateMachine : StateMachine
     public EnemyStateMachine(Enemy enemy)
     {
         this.Enemy = enemy;
-        Target = GameObject.FindGameObjectWithTag("TowerDoor").GetComponent<Health>();
+        Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 
         IdleState = new EnemyIdleState(this);
         ChasingState = new EnemyChasingState(this);
