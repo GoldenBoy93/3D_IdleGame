@@ -51,6 +51,15 @@ public class Archer : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.PhysicsUpdate();
+
+        // 일정 시간마다 주변 적을 탐색
+        if (Time.frameCount % 60 == 0) // 60프레임마다 (대략 1초) 한 번씩 실행
+        {
+            stateMachine.FindNearestTarget();
+        }
+
+        // 상태 머신 업데이트
+        stateMachine.Update();
     }
 
     void OnDie()

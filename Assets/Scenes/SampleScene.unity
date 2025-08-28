@@ -1492,7 +1492,7 @@ MonoBehaviour:
     attackParameterName: '@Attack'
     comboAttackParameterName: ComboAttack
     baseAttackParameterName: BaseAttack
-  <Weapon>k__BackingField: {fileID: 0}
+  <Weapon>k__BackingField: {fileID: 1230939208}
 --- !u!114 &256690055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7902,67 +7902,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 882310460}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &886579859
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 886579860}
-  - component: {fileID: 886579861}
-  m_Layer: 0
-  m_Name: ArcherManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &886579860
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886579859}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.262309, y: -1.7911649, z: 37.548233}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &886579861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886579859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f114215e4a9d60546b6602e163137810, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  archerPrefabs: []
-  spawnAreas:
-  - x: -13
-    y: 20
-    width: 5
-    height: 5
-  gizmoColor:
-    r: 1
-    g: 0
-    b: 0
-    a: 0.3
-  activeEnemies: []
-  ArcherSpawnComplete: 0
-  timeBetweenSpawns: 0.2
-  timeBetweenWaves: 1
-  gameManager: {fileID: 0}
-  objectPoolManager: {fileID: 0}
 --- !u!1 &899027821
 GameObject:
   m_ObjectHideFlags: 0
@@ -9114,6 +9053,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 780591973049625915, guid: 4c6a9f9173c22104c9331a92cd08156e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 780591973049625915, guid: 4c6a9f9173c22104c9331a92cd08156e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6421775420516718030, guid: 4c6a9f9173c22104c9331a92cd08156e,
         type: 3}
@@ -16563,7 +16512,6 @@ SceneRoots:
   - {fileID: 159692000}
   - {fileID: 51574690}
   - {fileID: 2674736629595551181}
-  - {fileID: 886579860}
   - {fileID: 475470867}
   - {fileID: 334663069}
   - {fileID: 143131204151016139}

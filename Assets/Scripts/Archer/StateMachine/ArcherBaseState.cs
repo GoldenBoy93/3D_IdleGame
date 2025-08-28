@@ -53,6 +53,11 @@ public class ArcherBaseState : IState
 
     protected Vector3 GetMovementDirection()
     {
+        if (stateMachine.Target == null)
+        {
+            return Vector3.zero;
+        }
+
         Vector3 dir = (stateMachine.Target.transform.position - stateMachine.Archer.transform.position).normalized;
         return dir;
     }
