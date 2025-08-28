@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   <EnemyChasingRange>k__BackingField: 10
-  <AttackRange>k__BackingField: 5
+  <AttackRange>k__BackingField: 10
   <ForceTransitionTime>k__BackingField: 0.1
   <Force>k__BackingField: 0.5
   Damage: 10
-  <GroundData>k__BackingField:
+  <BasicData>k__BackingField:
     <BaseSpeed>k__BackingField: 1
-    <BaseRotationDamping>k__BackingField: 1
-    <WalkSpeedModifier>k__BackingField: 0.225
+    <BaseRotationDamping>k__BackingField: 5
     <RunSpeedModifier>k__BackingField: 1
   <Dealing_Start_TransitionTime>k__BackingField: 0
   <Dealing_End_TransitionTime>k__BackingField: 0

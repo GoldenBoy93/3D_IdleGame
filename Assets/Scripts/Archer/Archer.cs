@@ -48,7 +48,7 @@ public class Archer : MonoBehaviour
         stateMachine.Update();
 
         // 일정 시간마다 주변 적을 탐색
-        if (Time.frameCount % 60 == 0) // 60프레임마다 (대략 1초) 한 번씩 실행
+        if (Time.frameCount % 120 == 0) // 120프레임마다 (대략 2초) 한 번씩 실행
         {
             stateMachine.FindNearestTarget();
         }

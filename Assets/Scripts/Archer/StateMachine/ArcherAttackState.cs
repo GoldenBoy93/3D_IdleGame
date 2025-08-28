@@ -38,6 +38,22 @@ public class ArcherAttackState : ArcherBaseState
 
         ForceMove();
 
+        // 공격 애니메이션이 재생 중이더라도, 타겟이 사라지거나 거리가 멀어지면 즉시 상태 전환
+        if (stateMachine.Target == null || !IsInAttackRange() || stateMachine.Target.IsDie)
+        {
+            // Debug.Log("놓쳤다");는 타겟이 사라졌을 때 바로 호출될 수 있도록 위치를 옮김
+            if (IsInChasingRange()) // 추격 범위에 아직 있다면
+            {
+                stateMachine.ChangeState(stateMachine.ChasingState);
+            }
+            else // 추격 범위도 벗어났다면
+            {
+                stateMachine.ChangeState(stateMachine.IdleState);
+            }
+            return; // 상태가 변경되었으므로 즉시 함수 종료
+        }
+
+        // 기존의 애니메이션 재생 로직은 그대로 유지
         float normalizedTime = GetNormalizedTime(stateMachine.Archer.Animator, "Attack");
         if (normalizedTime < 1f)
         {
@@ -46,18 +62,9 @@ public class ArcherAttackState : ArcherBaseState
                 TryApplyForce();
             }
         }
-        else
+        else // 애니메이션이 끝났지만, 타겟이 여전히 공격 범위 내에 있다면 다시 공격 상태로
         {
-            if (IsInChasingRange())
-            {
-                stateMachine.ChangeState(stateMachine.ChasingState);
-                return;
-            }
-            else
-            {
-                stateMachine.ChangeState(stateMachine.IdleState);
-                return;
-            }
+            stateMachine.ChangeState(stateMachine.AttackState);
         }
     }
 
@@ -82,8 +89,6 @@ public class ArcherAttackState : ArcherBaseState
             return;
         }
 
-        // Ray의 방향을 계산. 타겟의 눈높이(또는 활을 쏠 지점)를 고려
-        // 타겟의 위치에서 origin을 뺀 벡터를 사용
         Vector3 direction = GetMovementDirection();
         float maxDistance = stateMachine.Archer.Data.AttackRange;
 

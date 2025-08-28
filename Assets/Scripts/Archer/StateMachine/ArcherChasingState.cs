@@ -32,11 +32,4 @@ public class ArcherChasingState : ArcherBaseState
             return;
         }
     }
-
-    protected bool IsInAttackRange()
-    {
-        float enemyDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Archer.transform.position).sqrMagnitude;
-
-        return enemyDistanceSqr <= stateMachine.Archer.Data.AttackRange * stateMachine.Archer.Data.AttackRange;
-    }
 }
