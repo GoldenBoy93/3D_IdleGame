@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IPoolable
 {
     [field: Header("Reference")]
-    // EnemySO만들고 수정
+
     [field: SerializeField] public EnemySO Data { get; private set; }
 
     [field: Header("Animations")]
