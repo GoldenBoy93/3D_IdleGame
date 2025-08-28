@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2379204903794935698}
   - component: {fileID: 3527308950540422457}
   m_Layer: 0
-  m_Name: Hero_Archer
+  m_Name: Archer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,16 +91,9 @@ MonoBehaviour:
   <Data>k__BackingField: {fileID: 11400000, guid: fb53070569c58a348b18fe646d592cbc,
     type: 2}
   <AnimationData>k__BackingField:
-    groundParameterName: '@Ground'
     idleParameterName: Idle
-    walkParameterName: Walk
     runParameterName: Run
-    airParameterName: '@Air'
-    jumpParameterName: Jump
-    fallParameterName: Fall
     attackParameterName: '@Attack'
-    comboAttackParameterName: ComboAttack
-    baseAttackParameterName: BaseAttack
   <Weapon>k__BackingField: {fileID: 0}
 --- !u!114 &3527308950540422457
 MonoBehaviour:

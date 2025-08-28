@@ -51,7 +51,7 @@ public class ArcherBaseState : IState
         Move(movementDirection);
     }
 
-    private Vector3 GetMovementDirection()
+    protected Vector3 GetMovementDirection()
     {
         Vector3 dir = (stateMachine.Target.transform.position - stateMachine.Archer.transform.position).normalized;
         return dir;
@@ -104,8 +104,9 @@ public class ArcherBaseState : IState
 
     protected bool IsInChasingRange()
     {
-        // 타겟이 죽었거나 || 공격성향이 아닐때
-        if (stateMachine.Target.IsDie || !stateMachine.Archer.Data.aggressive) return false;
+        // 타겟이 아직없거나(스폰되기 전 등의 이유로 null) || 타겟이 죽었거나 || 공격성향이 아니면 함수 끝(return)
+        if (stateMachine.Target == null || stateMachine.Target.IsDie || !stateMachine.Archer.Data.aggressive) 
+            return false;
 
         float EnemyDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Archer.transform.position).sqrMagnitude;
         return EnemyDistanceSqr <= stateMachine.Archer.Data.EnemyChasingRange * stateMachine.Archer.Data.EnemyChasingRange;

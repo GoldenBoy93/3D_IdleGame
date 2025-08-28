@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-// 이걸 붙이면 직렬화 되어 'Player' 스크립트처럼 [field : SerializeField]를 붙여서
-// 유니티에서 내부적으로 'Player' 인스펙터창에 갖다 쓸 수 있음.
+// 이걸 붙이면 직렬화 되어 'Archer' 스크립트처럼 [field : SerializeField]를 붙여서
+// 유니티에서 내부적으로 'Archer' 인스펙터창에 갖다 쓸 수 있음.
 [Serializable]
 public class ArcherAnimationData
 {
@@ -16,7 +16,7 @@ public class ArcherAnimationData
     public int RunParameterHash { get; private set; }
     public int AttackParameterHash { get; private set; }
 
-    // Player의 Awake에서 호출 예정
+    // Archer의 Awake에서 호출 예정
     public void Initialize()
     {
         // Hash로 변환하여 변수에 저장

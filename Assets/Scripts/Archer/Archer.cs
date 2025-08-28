@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Archer : MonoBehaviour, IPoolable
+public class Archer : MonoBehaviour
 {
     [field: Header("Reference")]
 
@@ -21,8 +21,6 @@ public class Archer : MonoBehaviour, IPoolable
 
     public Health Health { get; private set; }
 
-    ArcherManager ArcherManager;
-
     private Action<GameObject> returnToPool; // 풀로 반환할 때 호출되는 콜백 함수
 
     private void Awake()
@@ -35,8 +33,6 @@ public class Archer : MonoBehaviour, IPoolable
         Health = GetComponent<Health>();
 
         stateMachine = new ArcherStateMachine(this);
-
-        ArcherManager = ArcherManager.Instance;
     }
 
     private void Start()
@@ -66,53 +62,5 @@ public class Archer : MonoBehaviour, IPoolable
 
         // 캐릭터 컨트롤러 비활성화
         Controller.enabled = false;
-
-        StartCoroutine(DelayDie());
-    }
-
-    // 적 사망 애니메이션을 전부 보여주기 위한 시간벌기
-    private IEnumerator DelayDie()
-    {
-        yield return new WaitForSeconds(5f);
-
-        ArcherManager.RemoveArcherOnDeath(this); // 살아있는 적 List에서 사망한 객체 본인을 제거 해주는 함수 호출
-
-        OnDespawn(); // 오브젝트풀 돌려보기 위한 함수 호출
-    }
-
-    public void Initialize(Action<GameObject> returnAction)
-    {
-        returnToPool = returnAction; // 반환 콜백 저장
-    }
-
-    public void OnSpawn()
-    {
-        // 매니저 인스턴스 참조 확인
-        if (ArcherManager == null)
-        {
-            ArcherManager = ArcherManager.Instance;
-        }
-
-        // 1. Health 컴포넌트 초기화 및 이벤트 구독
-        Health.InitHealth(); // Health 스크립트에 이 메서드를 추가해야 함
-        Health.OnDie += OnDie;
-
-        // 2. 적의 상태 재설정
-        // Animator.SetBool을 사용하여 "Die" 상태를 초기화
-        //Animator.SetBool(AnimationData.DieParameterHash, false);
-        // 상태 머신을 초기 상태로 변경
-        stateMachine.ChangeState(stateMachine.IdleState);
-
-        // 3. 스크립트와 컨트롤러 활성화
-        enabled = true;
-        Controller.enabled = true;
-    }
-
-    public void OnDespawn()
-    {
-        // Health 이벤트 구독 해제
-        Health.OnDie -= OnDie;
-
-        returnToPool?.Invoke(gameObject); // 풀로 반환
     }
 }

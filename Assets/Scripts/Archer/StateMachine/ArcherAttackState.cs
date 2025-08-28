@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class ArcherAttackState : ArcherBaseState
 {
     private bool alreadyApplyForce;
-
-    private bool alreadyAppliedDealing;
 
     public ArcherAttackState(ArcherStateMachine archerStateMachine) : base(archerStateMachine)
     {
@@ -18,7 +17,6 @@ public class ArcherAttackState : ArcherBaseState
         base.Enter();
         StartAnimation(stateMachine.Archer.AnimationData.AttackParameterHash);
         alreadyApplyForce = false;
-        alreadyAppliedDealing = false;
     }
 
     public override void Exit()
@@ -41,21 +39,21 @@ public class ArcherAttackState : ArcherBaseState
                 TryApplyForce();
             }
 
-            if (!alreadyAppliedDealing && normalizedTime >= stateMachine.Archer.Data.Dealing_Start_TransitionTime)
+            // Raycast를 발사할 시작점과 방향을 설정
+            Vector3 origin = stateMachine.Archer.transform.position; // 아처 게임오브젝트 위치 가져오기
+            Vector3 direction = GetMovementDirection(); // Enemy 방향 (Vector)
+            float maxDistance = stateMachine.Archer.Data.AttackRange; // 공격 최대 거리
+
+            // Raycast를 발사하고, 충돌이 발생했는지 확인
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance))
             {
-                // Weapon 켜준다
-                stateMachine.Archer.Weapon.SetAttack(stateMachine.Archer.Data.Damage, stateMachine.Archer.Data.Force);
-                stateMachine.Archer.Weapon.gameObject.SetActive(true);
+                // 충돌이 발생했을 때의 로직
+                Debug.Log("화살이 " + hit.collider.gameObject.name + "에 명중했습니다.");
 
-                alreadyAppliedDealing = true;
+                // 충돌 지점의 위치에 무언가를 생성하거나 효과를 줄 수 있습니다.
+                // Debug.DrawRay는 씬 뷰에서 Ray를 시각적으로 보여줍니다. 실제 게임에는 영향을 주지 않습니다.
+                Debug.DrawRay(origin, direction * hit.distance, Color.red);
             }
-
-            if (alreadyAppliedDealing && normalizedTime >= stateMachine.Archer.Data.Dealing_End_TransitionTime)
-            {
-                // Weapon 꺼준다
-                stateMachine.Archer.Weapon.gameObject.SetActive(false);
-            }
-
         }
         else
         {
@@ -70,7 +68,6 @@ public class ArcherAttackState : ArcherBaseState
                 return;
             }
         }
-
     }
 
     private void TryApplyForce()
