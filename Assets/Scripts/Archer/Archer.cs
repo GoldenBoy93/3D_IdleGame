@@ -75,14 +75,4 @@ public class Archer : MonoBehaviour
     {
         OnArrowFired?.Invoke();
     }
-
-    void OnDrawGizmos()
-    {
-        // Gizmo 색상 설정
-        Gizmos.color = Color.yellow;
-
-        // 현재 오브젝트의 위치에서 바라보는 방향(transform.forward)으로
-        // 길이가 5인 선을 그립니다.
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 5f);
-    }
 }
