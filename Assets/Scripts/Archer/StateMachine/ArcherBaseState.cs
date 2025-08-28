@@ -44,7 +44,6 @@ public class ArcherBaseState : IState
 
     private void Move()
     {
-        Debug.Log("Move");
         Vector3 movementDirection = GetMovementDirection();
 
         Rotate(movementDirection);

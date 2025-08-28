@@ -96,6 +96,13 @@ public class ArcherAttackState : ArcherBaseState
         if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance))
         {
             Debug.Log("화살이 " + hit.collider.gameObject.name + "에 명중했습니다.");
+
+            if (hit.collider.gameObject.TryGetComponent(out Health health))
+            {
+                health.TakeDamage(stateMachine.Archer.Data.Damage);
+                Debug.Log($"Damage를 {stateMachine.Archer.Data.Damage}만큼 주었음.");
+            }
+
             Debug.DrawRay(origin, direction * hit.distance, Color.red, 2f); // 2초간 빨간색 Ray를 그림
         }
         else
