@@ -5,9 +5,9 @@ public class ArcherBaseState : IState
     protected ArcherStateMachine stateMachine;
     protected readonly PlayerGroundData groundData; // <- 'Player' ¸ÂÀ½
 
-    public ArcherBaseState(ArcherStateMachine playerStateMachine)
+    public ArcherBaseState(ArcherStateMachine archerStateMachine)
     {
-        stateMachine = playerStateMachine;
+        stateMachine = archerStateMachine;
         groundData = stateMachine.Archer.Data.GroundData;
     }
 

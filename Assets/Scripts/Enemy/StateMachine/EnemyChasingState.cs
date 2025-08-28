@@ -1,6 +1,6 @@
 public class EnemyChasingState : EnemyBaseState
 {
-    public EnemyChasingState(EnemyStateMachine playerStateMachine) : base(playerStateMachine)
+    public EnemyChasingState(EnemyStateMachine ememyStateMachine) : base(ememyStateMachine)
     {
     }
 

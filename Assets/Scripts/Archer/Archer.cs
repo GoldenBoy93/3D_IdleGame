@@ -9,7 +9,7 @@ public class Archer : MonoBehaviour, IPoolable
     [field: SerializeField] public ArcherSO Data { get; private set; }
 
     [field: Header("Animations")]
-    [field: SerializeField] public WarriorAnimationData AnimationData { get; private set; }
+    [field: SerializeField] public ArcherAnimationData AnimationData { get; private set; }
 
     public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }

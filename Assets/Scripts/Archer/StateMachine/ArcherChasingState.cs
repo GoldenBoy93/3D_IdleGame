@@ -1,6 +1,6 @@
 public class ArcherChasingState : ArcherBaseState
 {
-    public ArcherChasingState(ArcherStateMachine playerStateMachine) : base(playerStateMachine)
+    public ArcherChasingState(ArcherStateMachine archerStateMachine) : base(archerStateMachine)
     {
     }
 
@@ -8,14 +8,12 @@ public class ArcherChasingState : ArcherBaseState
     {
         stateMachine.MovementSpeedModifier = 1;
         base.Enter();
-        StartAnimation(stateMachine.Archer.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Archer.AnimationData.RunParameterHash);
     }
 
     public override void Exit()
     {
         base.Exit();
-        StopAnimation(stateMachine.Archer.AnimationData.GroundParameterHash);
         StopAnimation(stateMachine.Archer.AnimationData.RunParameterHash);
     }
 
@@ -37,8 +35,8 @@ public class ArcherChasingState : ArcherBaseState
 
     protected bool IsInAttackRange()
     {
-        float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Archer.transform.position).sqrMagnitude;
+        float enemyDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Archer.transform.position).sqrMagnitude;
 
-        return playerDistanceSqr <= stateMachine.Archer.Data.AttackRange * stateMachine.Archer.Data.AttackRange;
+        return enemyDistanceSqr <= stateMachine.Archer.Data.AttackRange * stateMachine.Archer.Data.AttackRange;
     }
 }

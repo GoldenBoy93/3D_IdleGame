@@ -8,7 +8,7 @@ public class ArcherAttackState : ArcherBaseState
 
     private bool alreadyAppliedDealing;
 
-    public ArcherAttackState(ArcherStateMachine ememyStateMachine) : base(ememyStateMachine)
+    public ArcherAttackState(ArcherStateMachine archerStateMachine) : base(archerStateMachine)
     {
     }
 
@@ -17,7 +17,6 @@ public class ArcherAttackState : ArcherBaseState
         stateMachine.MovementSpeedModifier = 0;
         base.Enter();
         StartAnimation(stateMachine.Archer.AnimationData.AttackParameterHash);
-        StartAnimation(stateMachine.Archer.AnimationData.BaseAttackParameterHash);
         alreadyApplyForce = false;
         alreadyAppliedDealing = false;
     }
@@ -26,8 +25,6 @@ public class ArcherAttackState : ArcherBaseState
     {
         base.Exit();
         StopAnimation(stateMachine.Archer.AnimationData.AttackParameterHash);
-        StopAnimation(stateMachine.Archer.AnimationData.BaseAttackParameterHash);
-
     }
 
     public override void Update()
@@ -84,6 +81,5 @@ public class ArcherAttackState : ArcherBaseState
         stateMachine.Archer.ForceReceiver.Reset();
 
         stateMachine.Archer.ForceReceiver.AddForce(stateMachine.Archer.transform.forward * stateMachine.Archer.Data.Force);
-
     }
 }

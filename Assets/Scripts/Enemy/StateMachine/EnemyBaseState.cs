@@ -5,9 +5,9 @@ public class EnemyBaseState : IState
     protected EnemyStateMachine stateMachine;
     protected readonly PlayerGroundData groundData; // <- 'Player' ¸ÂÀ½
 
-    public EnemyBaseState(EnemyStateMachine playerStateMachine)
+    public EnemyBaseState(EnemyStateMachine ememyStateMachine)
     {
-        stateMachine = playerStateMachine;
+        stateMachine = ememyStateMachine;
         groundData = stateMachine.Enemy.Data.GroundData;
     }
 

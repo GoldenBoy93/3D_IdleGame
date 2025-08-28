@@ -1,6 +1,6 @@
 public class EnemyIdleState : EnemyBaseState
 {
-    public EnemyIdleState(EnemyStateMachine playerStateMachine) : base(playerStateMachine)
+    public EnemyIdleState(EnemyStateMachine ememyStateMachine) : base(ememyStateMachine)
     {
     }
 

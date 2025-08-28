@@ -9,14 +9,12 @@ public class ArcherIdleState : ArcherBaseState
         stateMachine.MovementSpeedModifier = 0f;
 
         base.Enter();
-        StartAnimation(stateMachine.Archer.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Archer.AnimationData.IdleParameterHash);
     }
 
     public override void Exit()
     {
         base.Exit();
-        StopAnimation(stateMachine.Archer.AnimationData.GroundParameterHash);
         StopAnimation(stateMachine.Archer.AnimationData.IdleParameterHash);
     }
 
