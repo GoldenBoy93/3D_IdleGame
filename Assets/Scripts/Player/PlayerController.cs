@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,5 +23,17 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInput.Disable();
+    }
+
+    public void LockOnInput(int value)
+    {
+        if (value == 1)
+        {
+            playerInput.Player.Disable();
+        }
+        else
+        {
+            playerInput.Player.Enable();
+        }
     }
 }
