@@ -9054,15 +9054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
-    - target: {fileID: 780591973049625915, guid: 4c6a9f9173c22104c9331a92cd08156e,
+    - target: {fileID: 2379204903794935698, guid: 4c6a9f9173c22104c9331a92cd08156e,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 780591973049625915, guid: 4c6a9f9173c22104c9331a92cd08156e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
+      propertyPath: <AnimationData>k__BackingField.attackParameterName
+      value: Attack
       objectReference: {fileID: 0}
     - target: {fileID: 6421775420516718030, guid: 4c6a9f9173c22104c9331a92cd08156e,
         type: 3}

@@ -25,8 +25,8 @@ public class ArcherStateMachine : StateMachine
         ChasingState = new ArcherChasingState(this);
         AttackState = new ArcherAttackState(this);
 
-        MovementSpeed = Archer.Data.GroundData.BaseSpeed;
-        RotationDamping = Archer.Data.GroundData.BaseRotationDamping;
+        MovementSpeed = Archer.Data.BasicData.BaseSpeed;
+        RotationDamping = Archer.Data.BasicData.BaseRotationDamping;
     }
 
     // 타겟을 찾는 함수 추가

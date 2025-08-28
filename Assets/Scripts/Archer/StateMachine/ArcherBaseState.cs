@@ -3,12 +3,12 @@ using UnityEngine;
 public class ArcherBaseState : IState
 {
     protected ArcherStateMachine stateMachine;
-    protected readonly PlayerGroundData groundData; // <- 'Player' ¸ÂÀ½
+    protected readonly ArcherBasicData basicData;
 
     public ArcherBaseState(ArcherStateMachine archerStateMachine)
     {
         stateMachine = archerStateMachine;
-        groundData = stateMachine.Archer.Data.GroundData;
+        basicData = stateMachine.Archer.Data.BasicData;
     }
 
     public virtual void Enter()
