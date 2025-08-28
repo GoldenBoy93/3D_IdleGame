@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d700bff541dd49247a7629d4039fe6ae, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  <EnemyChasingRange>k__BackingField: 10
+  <EnemyChasingRange>k__BackingField: 20
   <AttackRange>k__BackingField: 10
   <ForceTransitionTime>k__BackingField: 0.1
   <Force>k__BackingField: 0.5
   Damage: 10
   <BasicData>k__BackingField:
-    <BaseSpeed>k__BackingField: 1
+    <BaseSpeed>k__BackingField: 2
     <BaseRotationDamping>k__BackingField: 5
     <RunSpeedModifier>k__BackingField: 1
   <Dealing_Start_TransitionTime>k__BackingField: 0
