@@ -93,7 +93,7 @@ MonoBehaviour:
   <AnimationData>k__BackingField:
     idleParameterName: Idle
     runParameterName: Run
-    attackParameterName: '@Attack'
+    attackParameterName: Attack
   <Weapon>k__BackingField: {fileID: 0}
 --- !u!114 &3527308950540422457
 MonoBehaviour:

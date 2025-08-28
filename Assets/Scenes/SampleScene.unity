@@ -9054,10 +9054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
-    - target: {fileID: 2379204903794935698, guid: 4c6a9f9173c22104c9331a92cd08156e,
+    - target: {fileID: 6150362010270501881, guid: 4c6a9f9173c22104c9331a92cd08156e,
         type: 3}
-      propertyPath: <AnimationData>k__BackingField.attackParameterName
-      value: Attack
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6421775420516718030, guid: 4c6a9f9173c22104c9331a92cd08156e,
         type: 3}
@@ -9112,7 +9112,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 644443356834204473, guid: 4c6a9f9173c22104c9331a92cd08156e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1824361247}
   m_SourcePrefab: {fileID: 100100000, guid: 4c6a9f9173c22104c9331a92cd08156e, type: 3}
 --- !u!1001 &1080861057
 PrefabInstance:
@@ -14350,6 +14354,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819123978}
   m_Mesh: {fileID: -1674268716328342803, guid: 38b797ba6cc77df40a51cd3200365644, type: 3}
+--- !u!1 &1824361244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 644443356834204473, guid: 4c6a9f9173c22104c9331a92cd08156e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1076380873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1824361247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824361244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5198789113eae4c972cd3d88592837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1844807351
 PrefabInstance:
   m_ObjectHideFlags: 0

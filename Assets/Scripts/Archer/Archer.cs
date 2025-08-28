@@ -21,7 +21,7 @@ public class Archer : MonoBehaviour
 
     public Health Health { get; private set; }
 
-    private Action<GameObject> returnToPool; // 풀로 반환할 때 호출되는 콜백 함수
+    public event Action OnArrowFired; // 애니메이션 이벤트에서 호출될 이벤트
 
     private void Awake()
     {
@@ -46,20 +46,17 @@ public class Archer : MonoBehaviour
     {
         stateMachine.HandleInput();
         stateMachine.Update();
-    }
-
-    private void FixedUpdate()
-    {
-        stateMachine.PhysicsUpdate();
 
         // 일정 시간마다 주변 적을 탐색
         if (Time.frameCount % 60 == 0) // 60프레임마다 (대략 1초) 한 번씩 실행
         {
             stateMachine.FindNearestTarget();
         }
+    }
 
-        // 상태 머신 업데이트
-        stateMachine.Update();
+    private void FixedUpdate()
+    {
+        stateMachine.PhysicsUpdate();
     }
 
     void OnDie()
@@ -71,5 +68,11 @@ public class Archer : MonoBehaviour
 
         // 캐릭터 컨트롤러 비활성화
         Controller.enabled = false;
+    }
+
+    // Animator 이벤트에서 호출할 함수
+    public void FireArrowEvent()
+    {
+        OnArrowFired?.Invoke();
     }
 }
