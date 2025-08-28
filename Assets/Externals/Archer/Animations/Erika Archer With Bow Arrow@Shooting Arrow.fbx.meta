@@ -57,10 +57,18 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.7174515
+      - time: 0.69435215
         functionName: FireArrowEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 8f5198789113eae4c972cd3d88592837,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.71080697
+        functionName: PlayAttackSoundEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 31a59afb299646340b8e9adba4445bd0,
           type: 3}
         floatParameter: 0
         intParameter: 0
