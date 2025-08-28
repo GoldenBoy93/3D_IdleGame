@@ -62,10 +62,6 @@ public class ArcherAttackState : ArcherBaseState
                 TryApplyForce();
             }
         }
-        else // 애니메이션이 끝났지만, 타겟이 여전히 공격 범위 내에 있다면 다시 공격 상태로
-        {
-            stateMachine.ChangeState(stateMachine.AttackState);
-        }
     }
 
     private void TryApplyForce()
