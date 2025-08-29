@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         // 생성할 적 숫자
         currentWaveIndex += 1;
+        // 몫을 뺀 나머지 공식을 사용하여 적생성 숫자 컨트롤
         int enemyCount = 1 + currentWaveIndex / 2;
 
         // 이벤트를 호출하여 다음 웨이브 시작을 알림

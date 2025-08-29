@@ -13,4 +13,6 @@ public class EnemySO : ScriptableObject
     [field: SerializeField][field: Range(0f, 1f)] public float Dealing_End_TransitionTime { get; private set; }
 
     [field: SerializeField] public bool aggressive = true;
+
+    [field: SerializeField] public int point = 10;
 }
