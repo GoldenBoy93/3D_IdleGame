@@ -4,24 +4,24 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
 
-    [SerializeField] private int currentWaveIndex = 0;
-
-    // 다음 웨이브를 시작해야 할 때 호출되는 이벤트
-    public delegate void StartWaveAction(int waveCount);
-    public static event StartWaveAction OnStartWave;
-
     public static GameManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                // 씬에 GameManager가 없으면 에러를 발생시켜 문제를 알림
+                // 씬에 Manager가 없으면 에러를 발생시켜 문제를 알림
                 Debug.LogError("GameManager is not found in the scene.");
             }
             return _instance;
         }
     }
+
+    [SerializeField] private int currentWaveIndex = 0;
+
+    // 다음 웨이브를 시작해야 할 때 호출되는 이벤트
+    public delegate void StartWaveAction(int waveCount);
+    public static event StartWaveAction OnStartWave;
 
     private void Awake()
     {
@@ -49,11 +49,13 @@ public class GameManager : MonoBehaviour
     // 다음 웨이브를 시작하는 핵심 로직
     void StartNextWave()
     {
+        // 생성할 적 숫자
         currentWaveIndex += 1;
+        // 몫을 뺀 나머지 공식을 사용하여 적생성 숫자 컨트롤
         int enemyCount = 1 + currentWaveIndex / 2;
 
         // 이벤트를 호출하여 다음 웨이브 시작을 알림
-        // EnemyManager는 이 이벤트를 구독하여 웨이브를 시작하게 됨
+        // 구독자 : EnemyManager, UIManager
         if (OnStartWave != null)
         {
             OnStartWave(enemyCount);

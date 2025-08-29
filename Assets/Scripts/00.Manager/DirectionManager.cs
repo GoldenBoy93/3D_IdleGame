@@ -6,20 +6,16 @@ using UnityEngine.InputSystem;
 
 public class DirectionManager : MonoBehaviour
 {
-    // 싱글톤 패턴 (기존 코드 유지)
     private static DirectionManager _instance;
+
     public static DirectionManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<DirectionManager>();
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("DirectionManager");
-                    _instance = go.AddComponent<DirectionManager>();
-                }
+                // 씬에 Manager가 없으면 에러를 발생시켜 문제를 알림
+                Debug.LogError("DirectionManager is not found in the scene.");
             }
             return _instance;
         }
@@ -27,13 +23,7 @@ public class DirectionManager : MonoBehaviour
 
     void Awake()
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
         _instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

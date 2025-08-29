@@ -5,15 +5,27 @@ using UnityEngine;
 // 오브젝트 풀을 관리하는 매니저 클래스
 public class ObjectPoolManager : MonoBehaviour
 {
-    public GameObject[] prefabs; // 풀링할 프리팹들
-    // 프리팹 인덱스별 오브젝트 큐
-    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>();
+    private static ObjectPoolManager _instance;
 
-    public static ObjectPoolManager Instance { get; private set; }
+    public static ObjectPoolManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // 씬에 Manager가 없으면 에러를 발생시켜 문제를 알림
+                Debug.LogError("ObjectPoolManager is not found in the scene.");
+            }
+            return _instance;
+        }
+    }
+
+    public GameObject[] prefabs; // 풀링할 프리팹들
+    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>(); // 프리팹 인덱스별 오브젝트 큐
 
     private void Awake()
     {
-        Instance = this;
+        _instance = this;
 
         // 각 프리팹 인덱스에 대한 큐 초기화
         for (int i = 0; i < prefabs.Length; i++)

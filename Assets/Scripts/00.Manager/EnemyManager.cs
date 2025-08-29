@@ -8,6 +8,19 @@ public class EnemyManager : MonoBehaviour
 {
     private static EnemyManager _instance;
 
+    public static EnemyManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // 씬에 Manager가 없으면 에러를 발생시켜 문제를 알림
+                Debug.LogError("EnemyManager is not found in the scene.");
+            }
+            return _instance;
+        }
+    }
+
     private Coroutine waveRoutine;
 
     [SerializeField]
@@ -29,16 +42,6 @@ public class EnemyManager : MonoBehaviour
     GameManager gameManager; // 게임매니저를 지칭 할 변수
 
     ObjectPoolManager objectPoolManager;  // 오브젝트풀매니저를 지칭 할 변수
-
-
-    // EnemyManager 싱글톤
-    public static EnemyManager Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
 
     private void Awake()
     {

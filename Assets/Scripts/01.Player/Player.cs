@@ -55,5 +55,7 @@ public class Player : MonoBehaviour
     {
         Animator.SetTrigger("Die");
         enabled = false;
+
+        UIManager.Instance.ShowGameOverUI();
     }
 }

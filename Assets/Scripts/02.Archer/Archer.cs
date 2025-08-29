@@ -68,6 +68,8 @@ public class Archer : MonoBehaviour
 
         // 캐릭터 컨트롤러 비활성화
         Controller.enabled = false;
+
+        UIManager.Instance.ShowGameOverUI();
     }
 
     // Animator 이벤트에서 호출할 함수
