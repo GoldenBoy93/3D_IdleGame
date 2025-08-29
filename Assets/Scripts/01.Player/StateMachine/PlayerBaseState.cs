@@ -30,6 +30,7 @@ public class PlayerBaseState : IState
         input.playerActions.Movement.canceled += OnMovementCanceled;
         input.playerActions.Run.started += OnRunStarted;
         input.playerActions.Jump.started += OnJumpStarted;
+        input.playerActions.Pause.started += OnPauseStarted;
         input.playerActions.Attack.performed += OnAttackPerformed;
         input.playerActions.Attack.canceled += OnAttackCanceled;
     }
@@ -41,6 +42,7 @@ public class PlayerBaseState : IState
         input.playerActions.Movement.canceled -= OnMovementCanceled;
         input.playerActions.Run.started -= OnRunStarted;
         input.playerActions.Jump.started -= OnJumpStarted;
+        input.playerActions.Pause.started -= OnPauseStarted;
         input.playerActions.Attack.performed -= OnAttackPerformed;
         input.playerActions.Attack.canceled -= OnAttackCanceled;
     }
@@ -76,6 +78,11 @@ public class PlayerBaseState : IState
     protected virtual void OnJumpStarted(InputAction.CallbackContext context)
     {
 
+    }
+    protected virtual void OnPauseStarted(InputAction.CallbackContext context)
+    {
+        // 일시정지 상태 토글
+        stateMachine.ChangeState(stateMachine.PauseState);
     }
 
     protected virtual void OnAttackPerformed(InputAction.CallbackContext obj)

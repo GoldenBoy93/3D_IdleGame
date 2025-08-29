@@ -17,14 +17,15 @@ public class Archer : MonoBehaviour
 
     private ArcherStateMachine stateMachine;
 
-    [field: SerializeField] public Weapon Weapon { get; private set; }
-
     public Health Health { get; private set; }
 
     public event Action OnArrowFired; // 애니메이션 이벤트에서 호출될 이벤트
 
     private void Awake()
     {
+        // 게임매니저의 _archer에 자신을 인스턴스
+        GameManager.Instance.Archer = this;
+
         AnimationData.Initialize();
 
         Animator = GetComponentInChildren<Animator>();
