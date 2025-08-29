@@ -44,7 +44,6 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
-        Health.OnDie += OnDie;
     }
 
     private void Update()
@@ -69,6 +68,9 @@ public class Enemy : MonoBehaviour, IPoolable
         // 캐릭터 컨트롤러 비활성화
         Controller.enabled = false;
 
+        // UIManager의 포인트누적 함수 호출하여 값 전달
+        UIManager.Instance.UpdatePointText(Data.point);
+
         StartCoroutine(DelayDie());
     }
 
@@ -83,9 +85,6 @@ public class Enemy : MonoBehaviour, IPoolable
 
         // 살아있는 적 List에서 사망한 객체 본인을 제거 해주는 함수 호출
         enemyManager.RemoveEnemyOnDeath(this);
-
-        // UIManager의 포인트누적 함수 호출
-        UIManager.Instance.UpdatePointText(Data.point);
 
         // 오브젝트풀 돌려보기 위한 함수 호출
         OnDespawn();
