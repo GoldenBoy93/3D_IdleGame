@@ -1,21 +1,31 @@
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public static SoundManager instance;
+    private static AudioManager _instance;
 
-    [SerializeField][Range(0f, 1f)] private float musicVolume; // 배경 음악 볼륨
+    public static AudioManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // 씬에 Manager가 없으면 에러를 발생시켜 문제를 알림
+                Debug.LogError("AudioManager is not found in the scene.");
+            }
+            return _instance;
+        }
+    }
 
     private AudioSource musicAudioSource; // 배경 음악용 AudioSource
     public AudioClip musicClip; // 기본 배경 음악 클립
 
     private void Awake()
     {
-        instance = this;
+        _instance = this;
 
         // 배경음 재생용 AudioSource 설정
         musicAudioSource = GetComponent<AudioSource>();
-        musicAudioSource.volume = musicVolume;
         musicAudioSource.loop = true;
     }
 
