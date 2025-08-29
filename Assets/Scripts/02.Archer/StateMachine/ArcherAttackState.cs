@@ -15,6 +15,7 @@ public class ArcherAttackState : ArcherBaseState
     {
         stateMachine.MovementSpeedModifier = 0;
         base.Enter();
+
         StartAnimation(stateMachine.Archer.AnimationData.AttackParameterHash);
         alreadyApplyForce = false;
 

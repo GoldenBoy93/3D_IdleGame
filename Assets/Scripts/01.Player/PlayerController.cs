@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         playerInput.Disable();
     }
 
+    // 카메라 연출 등의 때에 입력 막기
     public void LockOnInput(int value)
     {
         if (value == 1)

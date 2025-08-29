@@ -27,6 +27,7 @@ public class PlayerStateMachine : StateMachine
 
     public PlayerComboAttackState ComboAttackState { get; private set; }
 
+    public PauseState PauseState { get; private set; }
 
     public PlayerStateMachine(Player player)
     {
@@ -46,6 +47,7 @@ public class PlayerStateMachine : StateMachine
         FallState = new PlayerFallState(this);
 
         ComboAttackState = new PlayerComboAttackState(this);
+        PauseState = new PauseState(this);
 
         MovementSpeed = player.Data.GroundData.BaseSpeed;
         RotationDamping = player.Data.GroundData.BaseRotationDamping;

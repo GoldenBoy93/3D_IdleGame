@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Archer 스크립트 Awake에서 인스턴스 받아옴
+    private Archer _archer;
+
+    // Archer 스크립트에서 받아온 인스턴스를 다른 곳에서 사용할 수 있도록 프로퍼티 사용
+    public Archer Archer
+    {
+        get { return _archer; }
+        set { _archer = value; }
+    }
+
     [SerializeField] private int currentWaveIndex = 0;
 
     // 다음 웨이브를 시작해야 할 때 호출되는 이벤트
@@ -25,19 +36,21 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        _instance = this;
+
         // 싱글톤 패턴 초기화 (중복 로직 제거)
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            if (_instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
+        //if (_instance == null)
+        //{
+        //    _instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    if (_instance != this)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 
     private void Start()
