@@ -39,7 +39,7 @@ public class Archer : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
-        Health.OnDie += OnDie;
+        Health.OnDie += OnDie; // Start시, 이 스크립트의 OnDie 함수를 Health스크립트의 OnDie 이벤트에 구독
     }
 
     private void Update()
