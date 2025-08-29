@@ -19,7 +19,7 @@ public class PauseState : PlayerBaseState
         Cursor.visible = true;
 
         // 상점 UI 활성화
-        //ShopManager.Instance.ShowShopUI();
+        UIManager.Instance.ShowShopUI();
     }
 
     public override void Exit()
@@ -34,7 +34,7 @@ public class PauseState : PlayerBaseState
         Cursor.visible = false;
 
         // 상점 UI 비활성화
-        //GameManager.Instance.ShopManager.HideShopUI();
+        UIManager.Instance.HideShopUI();
     }
 
     protected override void OnPauseStarted(InputAction.CallbackContext context)

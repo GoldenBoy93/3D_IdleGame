@@ -19,11 +19,11 @@ public class ShopSlotUI : MonoBehaviour
             itemIconImage.sprite = itemData.itemIcon;
             itemNameText.text = itemData.itemName;
             itemPriceText.text = itemData.itemPrice.ToString();
-            buyButton.onClick.AddListener(OnBuyButtonClick);
+            //buyButton.onClick.AddListener(OnBuyButtonClick);
         }
     }
 
-    private void OnBuyButtonClick()
+    public void OnBuyButtonClick()
     {
         // 구매 로직 처리
         // 예: 플레이어의 코인 확인 후, 구매 가능하면 itemData.ApplyEffect() 호출

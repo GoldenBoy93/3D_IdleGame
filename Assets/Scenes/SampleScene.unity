@@ -17177,7 +17177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.043774065, y: 0.009821398, z: -0.00043035584, w: 0.9989931}
+  m_LocalRotation: {x: 0.043774087, y: 0.009821398, z: -0.00043035607, w: 0.9989931}
   m_LocalPosition: {x: -11.860218, y: 8.323309, z: -54.273468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39528,6 +39528,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 864108936}
   stageNumber: {fileID: 456749941}
   pointNumber: {fileID: 55976952}
+  shopUI: {fileID: 1410740994}
 --- !u!1001 &997294849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46436,7 +46437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235206038}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.043774065, y: 0.009821398, z: -0.00043035584, w: 0.9989931}
+  m_LocalRotation: {x: 0.043774087, y: 0.009821398, z: -0.00043035607, w: 0.9989931}
   m_LocalPosition: {x: -11.860218, y: 8.323309, z: -54.273468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48086,7 +48087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1410740995
 RectTransform:
   m_ObjectHideFlags: 0

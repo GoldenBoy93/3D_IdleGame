@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI stageNumber;
     public TextMeshProUGUI pointNumber; // 포인트를 Text로 치환
     private int pointValue = 0; // 누적 포인트 숫자 값
+    public GameObject shopUI; // 상점 UI를 포함하는 최상위 게임 오브젝트
 
     private void Awake()
     {
@@ -42,6 +43,22 @@ public class UIManager : MonoBehaviour
     {
         if (mainUI != null) mainUI.SetActive(false);
         if (gameOverUI != null) gameOverUI.SetActive(true);
+    }
+
+    public void ShowShopUI()
+    {
+        if (shopUI != null)
+        {
+            shopUI.SetActive(true);
+        }
+    }
+
+    public void HideShopUI()
+    {
+        if (shopUI != null)
+        {
+            shopUI.SetActive(false);
+        }
     }
 
     // GameManager의 OnStartWave 이벤트에 OnGameManagerStartWave 메서드를 등록
