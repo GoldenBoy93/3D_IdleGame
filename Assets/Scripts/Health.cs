@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     private float health;
-    public event Action OnDie;
+    public event Action OnDie; // OnDie 이벤트 선언
 
     public bool IsDie = false;
 
@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
         if (health == 0)
         {
             IsDie = true;
-            OnDie?.Invoke();
+            OnDie?.Invoke(); // OnDie 이벤트 전체 발동
         }
         Debug.Log($"{this.gameObject} : {health}");
     }

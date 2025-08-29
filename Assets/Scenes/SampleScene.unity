@@ -44733,6 +44733,11 @@ PrefabInstance:
       propertyPath: uiBar
       value: 
       objectReference: {fileID: 218152778}
+    - target: {fileID: 3527308950540422457, guid: 4c6a9f9173c22104c9331a92cd08156e,
+        type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4662275324494861169, guid: 4c6a9f9173c22104c9331a92cd08156e,
         type: 3}
       propertyPath: m_IsActive
@@ -48303,7 +48308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU DIED...
+  m_text: HE DIED...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: af3c43f23f01c4a46885d7f3742c759d, type: 2}
   m_sharedMaterial: {fileID: 2666430686102170034, guid: af3c43f23f01c4a46885d7f3742c759d,
